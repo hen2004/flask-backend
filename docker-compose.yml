@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+  backend:
+    image: python:3.8-slim
+    command: sh -c "pip install flask && python /code/app.py"
+    volumes:
+      - ./backend:/code
+    ports:
+      - "5000:5000"
+
